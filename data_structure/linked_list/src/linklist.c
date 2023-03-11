@@ -37,6 +37,7 @@ void delete_linkNode(Linklist *L, int data)
     //如果链表只有头结点
     if(L->next == NULL)
         return;
+    L = L->next;  //头节点指向第一个节点
     //首先遍历找到这个data对应的上一个node
     while(L->next != NULL)
     {
@@ -65,10 +66,11 @@ void add_linkNode(Linklist *L, int pre_node_data,int data)
 {
     Linklist *tmp;
     do{
-        L = L->next;
         if(L->next == NULL)
             printf("链表中没有这样的元素！！\n");
-    }while (L->elem != pre_node_data);
+        else
+            L = L->next;
+    }while (L->elem != pre_node_data && L->next != NULL);
     tmp = L;
     Linklist *new_node = (Linklist *) malloc(sizeof(Linklist));
     new_node->elem = data;
@@ -110,11 +112,7 @@ int main(void)
 {
     Linklist *L = initLinklist();
     traverse_linklist(L);
-    delete_linkNode(L,4);
-    traverse_linklist(L);
-    delete_linkNode(L,1);
-    traverse_linklist(L);
-    add_linkNode(L,3,5);
+    delete_linkNode(L,0);
     traverse_linklist(L);
     return 0;
 }

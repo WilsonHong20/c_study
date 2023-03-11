@@ -1,5 +1,5 @@
 ARCH ?= x86
-TARGET = linklist
+TARGET = linerlist
 BUILD_DIR := build_$(ARCH)
 SRC_DIR := src
 IDIR := include
@@ -16,8 +16,8 @@ endif
 
 @(TARGET):
 	@mkdir -p $(BUILD_DIR)
-	gcc -c -o $(BUILD_DIR)/$(TARGET).o $(SRC) $(CFLAGS)
-	gcc -o  $(BUILD_DIR)/$(TARGET) $(BUILD_DIR)/$(TARGET).o $(CFLAGS)
+	gcc -g -c -o $(BUILD_DIR)/$(TARGET).o $(SRC) $(CFLAGS)
+	gcc -g -o  $(BUILD_DIR)/$(TARGET) $(BUILD_DIR)/$(TARGET).o $(CFLAGS)
 
 
 
