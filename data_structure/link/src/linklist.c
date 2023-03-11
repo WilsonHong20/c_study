@@ -1,4 +1,4 @@
-#include<../include/linklist.h>
+#include "linklist.h"
 
 /**
  * @brief 初始化生成一个{0 1 2 3 4}的链表
@@ -105,6 +105,7 @@ void traverse_linklist(Linklist *L)
 }
 
 
+
 int main(void)
 {
     Linklist *L = initLinklist();
@@ -117,4 +118,3 @@ int main(void)
     traverse_linklist(L);
     return 0;
 }
-
