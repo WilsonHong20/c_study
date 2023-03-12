@@ -78,8 +78,6 @@ void add_linkNode(Linklist *L, int pre_node_data,int data)
     tmp->next = new_node;
 }
 
-
-
 struct Linklist *head_insert (struct Linklist *l)
 {
     Linklist *a; //指向待插入的链表
@@ -90,7 +88,6 @@ struct Linklist *head_insert (struct Linklist *l)
     L->next = a;
     return L;
 }
-
 
 //遍历某个节点
 void traverse_linklist(Linklist *L)
@@ -106,13 +103,203 @@ void traverse_linklist(Linklist *L)
     printf("\n");
 }
 
+/***************************************************************************************************************************
+ ************************************************************************************************************************** 
+ *************************************************************************************************************************** 
+ * *************************************************************************************************************************/
+/**
+ * @brief  单链表的初始化
+ * @note   :1.生成新节点作为头节点，用头指针L指向头节点  2.头节点的指针域置空
+ * @param  *L: 单链表
+ * @retval 
+ */
+status InitList(LinkList *L){
+    L = (LNode *) malloc(sizeof(LNode)); 
+    L->next = NULL;
+    return OK;
+}
+/**
+ * @brief  :单链表的取值
+ * @note   ：
+ * @param  L:链表 
+ * @param  i: 位置索引
+ * @param  data: 数据
+ * @retval 
+ */
+int  GetElem(LinkList L,int i){
+    int data = 0;
+    for(int j = 0 ; j< i ; j++)
+    {
+        if(!L.next)
+            return ERROR;
+        L = *(L.next);
+    }
+    data = L.data;
+    return data;
+}
+/**
+ * @brief  查询元素所在位置
+ * @note   
+ * @param  L: 操作的链表
+ * @param  data: 元素数据
+ * @retval 
+ */
+LNode *LocateElem(LinkList L,int data)
+{
+    LNode *p;
+    do
+    {
+        L = *(L.next);
+        if(L.data == data)
+        {
+            p = &L;
+            break;
+        }
+    } while (!L.next);
+    return p;
+}
+/**
+ * @brief  链表中插入节点
+ * @note   
+ * @param  *L: 所操作的链表指针
+ * @param  i: 插入的位置
+ * @param  data: 插入节点的数据
+ * @retval 
+ */
+status ListInsert(LinkList *L,int i,int data)
+{
+    LNode *tmp;
+    LNode *node = (LNode *)malloc(sizeof(LNode));
+    node->data = data;
+    if(!L->next)
+    {
+        L->next = node;
+        node->next = NULL;
+    }else
+    {
+        do
+        {
+            L = L->next;
+            i--;
+        } while (L->next && i > 0);
+
+        node->next = L->next;
+        L->next = node;
+    }
+    return OK;
+}
+/**
+ * @brief  删除链表中的节点
+ * @note   
+ * @param  *L: 操纵的链表
+ * @param  i: 删除的位置
+ * @retval 
+ */
+status Listdelete(LinkList *L,int i)
+{
+    if(!L->next) return ERROR;
+    LNode *node = (LNode *) malloc(sizeof(LNode));
+    for(int j = 0; j < i -1 ; j++)
+    {
+        L = L->next;
+    }
+    node = L->next;
+    L->next = L->next->next;
+    free(node);
+    return OK;
+}
+/**
+ * @brief  头插法
+ * @note   
+ * @param  *L: 操作的链表
+ * @param  n: 插入节点的数据
+ * @retval None
+ */
+void Head_insert_list(LinkList *L,int data)
+{
+    LNode *node = (LNode *)malloc(sizeof(LNode));
+    node->data = data;
+    if(!L->next)  //如果只有一个头节点
+    {
+        L->next = node;
+        node->next = NULL;
+    }else
+    {   
+        node->next = L->next;
+        L->next = node;
+    }
+}
+/**
+ * @brief  尾插法
+ * @note   
+ * @param  *L: 操作的链表
+ * @param  n: 插入节点的元素
+ * @retval None
+ */
+void Tail_insert_list(LinkList *L,int data)
+{
+    LNode *node = (LNode *)malloc(sizeof(LNode));
+    node->data = data;
+    node->next = NULL;
+    if(!L->next)
+    {
+        L->next = node;
+    }
+    do
+    {
+        L = L->next;
+    } while (L->next);
+    L->next = node;
+}
+
+void CreateList_H(LinkList *L,int n){}
+void CreateList_R(LinkList *L,int n){}
+//循环链表
+void Create_Circular_Linked_List(LinkList *L,int n){}
+status ListInsert_DuL(DuLinkList *L,int i, int data){}
+status Listdelete_DuL(DuLinkList *L,int i, int data){}
+
+//遍历某个节点
+void traverse_LinkList(LinkList *L)
+{
+   LNode *hNode = L;     //获取头结点
+    while(L->next)
+    {
+        L = L->next;
+        printf("%d ",L->data);
+    }
+    L = hNode;     //将链表指针指向头结点
+    printf("\n");
+}
 
 
 int main(void)
 {
-    Linklist *L = initLinklist();
-    traverse_linklist(L);
-    delete_linkNode(L,0);
-    traverse_linklist(L);
+    /********************************/
+    //Linklist *L = initLinklist();
+    //traverse_linklist(L);
+    //delete_linkNode(L,0);
+    //traverse_linklist(L);
+    /********************************/
+
+    LinkList L ;
+    InitList(&L);
+    ListInsert(&L,1,1);
+    ListInsert(&L,2,2);
+    ListInsert(&L,3,3);
+    traverse_LinkList(&L);   //1 2 3 
+    Head_insert_list(&L,4);
+    Head_insert_list(&L,5);
+    traverse_LinkList(&L);   //5 4 1 2 3 
+    Tail_insert_list(&L,1);  //5 4 1 2 3 1
+    traverse_LinkList(&L);
+
+    Listdelete(&L,3);
+    Listdelete(&L,5);
+    traverse_LinkList(&L);    // 5 4 2 3
+    
+    int data = GetElem(L,2);
+    printf("第二位的数据是%d\n",data);  //4
+
     return 0;
 }
