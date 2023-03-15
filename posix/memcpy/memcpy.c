@@ -7,7 +7,13 @@ void my_memcpy(char *dst, char *src,int n)
 {
     while(n-- > 0) 
     {
-        *dst ++ = *src++ ;
+        if(src != &dst[n])
+        {
+            *dst ++ = *src++ ;
+        }else
+        {
+            printf("越界了！！！！！\n");
+        }
     }    
 }
 
