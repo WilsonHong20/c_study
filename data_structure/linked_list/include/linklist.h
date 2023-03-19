@@ -1,5 +1,6 @@
- #include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
+#include <assert.h>
 
 #ifndef LINKLIST_H
 #define LINKLIST_H
@@ -37,7 +38,7 @@ typedef struct LNode
 }LNode,LinkList;
 
 
-status InitList(LinkList *L);
+LinkList *InitList();
 int GetElem(LinkList L,int i);
 LNode *LocateElem(LinkList L,int data);
 status ListInsert(LinkList *L,int i,int data);
@@ -56,6 +57,8 @@ void Tail_insert_list(LinkList *L,int data);
 
 //循环链表
 void Create_Circular_Linked_List(LinkList *L,int n);
+void traverse_Circular_Linked_List(LinkList *L);
+void traverse_Circular_Linked_List_n(LinkList *L,int n);
 
 //双向链表
 typedef struct DuLNode
@@ -63,10 +66,15 @@ typedef struct DuLNode
     int data;
     struct DuLNode *prior;    //直接前驱
     struct DuLNode *next;     //直接后继
-}DuLNode,*DuLinkList;
+}DuLNode,DuLinkList;
 
+DuLinkList* InitDulList();
 status ListInsert_DuL(DuLinkList *L,int i, int data);
 status Listdelete_DuL(DuLinkList *L,int i, int data);
 
+void traverse_DuL_Linked_List(DuLinkList *L);
+void traverse_DuL_Linked_List_n(DuLinkList *L,int n);
+
 void traverse_LinkList(LinkList *L);
+
 #endif

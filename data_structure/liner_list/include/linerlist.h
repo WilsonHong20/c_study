@@ -3,6 +3,8 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+#include<assert.h>
 
 #define MAXSIZE 10000
 /**
@@ -35,6 +37,14 @@ typedef struct sqllist
     int length;
 }sqllist;
 
+typedef struct LinerList 
+{
+    int elem[0];
+    int length;
+}LinerList;
+
+
+
 status initlist(sqllist *l);
 status getBook(sqllist l,unsigned int i, book *b);
 int locateBook(sqllist l,book b);
@@ -42,4 +52,23 @@ status listInsert(sqllist *l,unsigned int i,book b);
 status listDelete(sqllist *l,unsigned int i);
 void traverse_linerlist(sqllist *l);
 void info_book(book b);
+
+
+
+
+
+//泛型实现如下函数
+//LinerList* InitList(int size);
+//status ListInsert(LinerList *l,unsigned int i,int data);
+//status ListDelete(LinerList *l,unsigned int i);
+//void traverse_linerlist(LinerList *l);
+
+
+
+/*****************有序表的合并*********************/
+LinerList* InitList();
+status LinerListInsert(LinerList *l,unsigned int i,int data);
+void traverse_LinerList(LinerList *l);
+void MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC);
+
 #endif

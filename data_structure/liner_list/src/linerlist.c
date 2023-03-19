@@ -114,8 +114,74 @@ void info_book(book b)
     printf("===========================\n");
 }
 
+/*******************************************泛型实现如下函数*****************************************************/
+
+/*******************************************有序表*****************************************************/
+LinerList* InitList(){
+    LinerList *L = malloc(sizeof(LinerList));
+    if(L->elem == NULL) exit(OVERFLOW);
+    L->length = 0;
+    return L;
+}
+
+status LinerListInsert(LinerList *l,unsigned int i,int data){
+    assert( i> 0);
+    l->elem[i-1] = data;
+    ++l->length ;
+    return OK;
+}
+
+void traverse_LinerList(LinerList *l){
+    for (int i = 0; i < l->length; i++)
+    {
+        printf("%d ",l->elem[i]);
+    }
+    printf("\n");
+}
+/**
+ * @brief  有序线性表的合并
+ * @note   
+ * @param  *LA: 有序线性表A
+ * @param  *LB: 有序线性表B
+ * @param  *LC: 合并后的线性表C
+ * @retval None
+*/
+
+/*
+void MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC){
+    LC->length = LA->length + LB->length;
+    int *pa = LA->elem;
+    int *pb = LB->elem;
+    int *pc = LC->elem;
+
+    int n = LA->length > LB->length ? LB->length: LA->length;
+    while (n > 0 )
+    {
+        if(*pa++ > *pb++) 
+        {
+            *pc++ = *pb;
+        }
+        else
+        {
+            *pc++ = *pa;
+        }
+        n--;
+    }
+    for (int i = n; i < LC->length; i++)
+    {
+        *pc++ = LA->length > LB->length ? (*(pa+n)++) : (*(pb+n)++);
+    }
+}
+
+*/
+
+
+
+
+
 int main(void)
 {
+    #if 0
     book b1 = {"1a","三国演义",100};
     book b2 = {"2b","水浒传",200};
     book b3 = {"3c","西游记",300};
@@ -135,6 +201,14 @@ int main(void)
 
     listDelete(&l,2);
     traverse_linerlist(&l);
-
+    #endif
+    
+    LinerList *A;
+    A = InitList();
+    LinerListInsert(A,1,3);
+    LinerListInsert(A,2,5);
+    LinerListInsert(A,3,8);
+    LinerListInsert(A,4,11);
+    traverse_LinerList(A);
     return 0;
 }
