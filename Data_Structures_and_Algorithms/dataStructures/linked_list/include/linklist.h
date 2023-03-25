@@ -68,6 +68,7 @@ typedef struct DuLNode
     struct DuLNode *next;     //直接后继
 }DuLNode,DuLinkList;
 
+
 DuLinkList* InitDulList();
 status ListInsert_DuL(DuLinkList *L,int i, int data);
 status Listdelete_DuL(DuLinkList *L,int i, int data);
@@ -79,4 +80,29 @@ void traverse_LinkList(LinkList *L);
 
 LinkList* MergeList_L(LinkList *l1,LinkList * l2);
 
+//多项式
+struct  parameter
+{
+    float coef;            //系数
+    int expn;               //指数
+}para;
+
+
+typedef struct PNode
+{
+    struct  parameter para;    
+    struct  PNode *next;    //指针域
+}PNode, Polynomial;
+
+Polynomial * InitPolynomial();
+status createPolynomial(Polynomial *pl,int num,struct parameter *para);
+status PolynomialInsert(Polynomial *pl,int i,struct parameter para);
+void foreach_poly(Polynomial *pl);
+Polynomial* AddPolyn(Polynomial *pl1,Polynomial *pl2);
+
 #endif
+
+
+
+
+

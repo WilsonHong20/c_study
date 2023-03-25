@@ -526,6 +526,128 @@ LinkList* MergeList_L(LinkList *l1,LinkList * l2){
     return l3;
 }
 
+/**
+ * @brief  初始化多项式
+ * @note   
+ * @retval 
+ */
+Polynomial * InitPolynomial(){
+    Polynomial *pl = (Polynomial *)malloc(sizeof(Polynomial));
+    pl->para.coef = -1;
+    pl->next = NULL;
+    return pl;
+}
+
+/**
+ * @brief  构造一个已知的多项式
+ * @note   
+ * @param  *pl: 构造的多项式
+ * @param  num: 项数
+ * @param  *para: 每个项对应的参数
+ * @retval 
+*/
+status createPolynomial(Polynomial *pl,int num,struct parameter *para){
+    assert(pl != NULL);
+    Polynomial *tmp = pl;
+
+    for (int i = 0; i < num; i++)
+    {
+        /* code */
+        PNode *p = (PNode *)malloc(sizeof(PNode));
+        p->next = NULL;
+        p->para.coef = para[i].coef;
+        p->para.expn = para[i].expn;
+        tmp->next = p;
+        tmp = p;
+    }
+    return OK;
+}
+
+
+
+/**
+ * @brief  向多项式链表中插入数据
+ * @note   
+ * @param  *pl: 多项式链表
+ * @param  i: 插入的位置
+ * @param  para: 多项式的参数
+ * @retval 
+ */
+status PolynomialInsert(Polynomial *pl,int i,struct parameter para){
+    Polynomial *tmp = pl; 
+    PNode *p = (PNode *)malloc(sizeof(PNode));
+    p->next = NULL;
+    p->para.coef = para.coef;
+    p->para.expn = para.expn;
+
+    while (i - 1)
+    {
+        tmp = tmp->next;
+        i--;
+    }
+    tmp->next =  p;
+    return OK;
+}
+
+/**
+ * @brief  遍历多项式
+ * @note   
+ * @param  *pl: 多项式链表
+ * @retval None
+*/
+void foreach_poly(Polynomial *pl)
+{
+    assert(pl != NULL);
+    PNode *tmp = pl;
+    printf("f(x)=");
+    while (tmp->next  != NULL)
+    {
+        tmp = tmp->next;
+        printf("%fexp(%d)+",tmp->para.coef,tmp->para.expn);
+    }
+    printf("\n");
+}
+/**
+ * @brief  多项式相加
+ * @note   
+ * @param  *pl1: 多项式1
+ * @param  *pl2: 多项式2
+ * @retval None
+*/
+Polynomial* AddPolyn(Polynomial *pl1,Polynomial *pl2)
+{
+    assert(pl1 != NULL);
+    assert(pl2 != NULL);
+    PNode *p1 = pl1->next;
+    PNode *p2 = pl2->next;
+    Polynomial *pl3 = pl1;
+    PNode *p3 = pl3;
+
+    while (p1 && p2)
+    {
+        if(p1->para.expn > p2->para.expn )
+        {
+            p3->next = p2;
+            p3 = p2;
+        }
+        else if(p1->para.expn = p2->para.expn)
+        {
+            p1->para.coef = p1->para.coef + p2->para.coef;
+            p3->next = p1;
+            p3 = p1; 
+        }else
+        {
+            p3->next = p1;
+            p3 = p1;
+        }
+    }
+    p3->next = p1 ? p1 : p2;
+    free(pl2);
+    return pl3;
+}
+
+
+
 int main(void)
 {
     #if 0
@@ -595,7 +717,7 @@ int main(void)
 
 
     /****************************/
-    #endif
+  
 
     LinkList *l1 ;
     l1 = InitList();
@@ -620,5 +742,26 @@ int main(void)
     LinkList *l3;
     l3 = myMergeList_L(l1,l2);
     traverse_LinkList(l3);   //1 2 3 
+
+    #endif
+
+    Polynomial *pl1;
+    struct parameter para1[4] = {{7,0},{3,1},{9,8},{5,17}};
+    int len1 = sizeof(para1) / sizeof(struct  parameter);
+    pl1 = InitPolynomial();
+    createPolynomial(pl1,len1,para1);
+    foreach_poly(pl1);
+
+
+    Polynomial *pl2;
+    struct parameter para2[3] = {{8,1},{22,7},{-9,8}};
+    int len2 = sizeof(para2) / sizeof(struct  parameter);
+    pl2 = InitPolynomial();
+    createPolynomial(pl2,len2,para2);
+    foreach_poly(pl2);
+
+    Polynomial *pl;
+    pl = AddPolyn(pl1,pl2);
+    foreach_poly(pl);
     return 0;
 }
