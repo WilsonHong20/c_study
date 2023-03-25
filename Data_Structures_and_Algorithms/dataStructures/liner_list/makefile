@@ -9,9 +9,9 @@ DEPS := $(wildcard $(IDIR))/*.h)
 CFLAGS := $(patsubst %, -I%, $(IDIR))
 
 ifeq ($(ARCH),x86)
-	CC := /opt/rh/devtoolset-9/root/bin/gcc
+CC := gcc
 else
-	CC := arm-linux-gnueabihf-gcc
+CC := arm-linux-gnueabihf-gcc
 endif
 
 @(TARGET):

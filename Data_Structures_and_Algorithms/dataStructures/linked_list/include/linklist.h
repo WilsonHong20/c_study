@@ -77,4 +77,6 @@ void traverse_DuL_Linked_List_n(DuLinkList *L,int n);
 
 void traverse_LinkList(LinkList *L);
 
+LinkList* MergeList_L(LinkList *l1,LinkList * l2);
+
 #endif

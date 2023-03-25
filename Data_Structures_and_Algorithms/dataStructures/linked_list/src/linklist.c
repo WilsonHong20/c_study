@@ -1,4 +1,4 @@
-#include "linklist.h"
+#include "../include/linklist.h"
 
 /**
  * @brief 初始化生成一个{0 1 2 3 4}的链表
@@ -168,6 +168,7 @@ LNode *LocateElem(LinkList L,int data)
  */
 status ListInsert(LinkList *L,int i,int data)
 {
+    assert(L != NULL);
     LNode *tmp;
     LNode *node = (LNode *)malloc(sizeof(LNode));
     node->data = data;
@@ -491,9 +492,43 @@ void traverse_DuL_Linked_List_n(DuLinkList *L,int n){
 
 }
 
+/**
+ * @brief  合并两个顺序链表
+ * @note   已知单链表l1 l2的元素按值非递减排列
+ * @param  *l1: 
+ * @param  *l2: 
+ * @retval None
+ */
+LinkList* MergeList_L(LinkList *l1,LinkList * l2){
+    LinkList *l3 ;
+    LNode *p1 = l1->next;
+    LNode *p2 = l2->next;
+    l3 = l1;
+    LNode *p3 =  l3;
+    while (p1 && p2)
+    {
+        if(p1->data <= p2->data)
+        {
+            p3->next = p1;
+            p3 = p1;
+            p1 = p1->next; 
+        }   
+        else
+        {
+            p3->next  = p2;
+            p3 = p2;
+            p2  = p2->next;
+        } 
+    }
+    p3->next = p1 ? p1 : p2;    //p3如果指向NULL 则表示l1短些，如果还指向p1则表示l1长些
+    
+    free(l2);
+    return l3;
+}
 
 int main(void)
 {
+    #if 0
     /********************************/
     //Linklist *L = initLinklist();
     //traverse_linklist(L);
@@ -560,6 +595,30 @@ int main(void)
 
 
     /****************************/
+    #endif
 
+    LinkList *l1 ;
+    l1 = InitList();
+    ListInsert(l1,1,3);
+    ListInsert(l1,2,5);
+    ListInsert(l1,3,8);
+    ListInsert(l1,4,11);  
+    traverse_LinkList(l1);   //1 2 3 
+
+    LinkList *l2 ;
+    l2 = InitList();
+    ListInsert(l2,1,2);
+    ListInsert(l2,2,6);
+    ListInsert(l2,3,8);
+    ListInsert(l2,4,9);  
+    ListInsert(l2,5,11);
+    ListInsert(l2,6,15);
+    ListInsert(l2,7,20);
+    traverse_LinkList(l2);   //1 2 3 
+
+
+    LinkList *l3;
+    l3 = myMergeList_L(l1,l2);
+    traverse_LinkList(l3);   //1 2 3 
     return 0;
 }
