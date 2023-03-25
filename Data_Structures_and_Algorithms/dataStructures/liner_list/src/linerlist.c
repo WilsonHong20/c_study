@@ -1,6 +1,5 @@
 #include "linerlist.h"
 
-
 /**
  * @brief  构造一个空的顺序表
  * @note   
@@ -118,7 +117,7 @@ void info_book(book b)
 
 /*******************************************有序表*****************************************************/
 LinerList* InitList(){
-    LinerList *L = malloc(sizeof(LinerList));
+    LinerList *L =(LinerList *) malloc(sizeof(LinerList));
     if(L->elem == NULL) exit(OVERFLOW);
     L->length = 0;
     return L;
@@ -126,8 +125,8 @@ LinerList* InitList(){
 
 status LinerListInsert(LinerList *l,unsigned int i,int data){
     assert( i> 0);
-    l->elem[i-1] = data;
     ++l->length ;
+    l->elem[i-1] = data;
     return OK;
 }
 
@@ -147,34 +146,49 @@ void traverse_LinerList(LinerList *l){
  * @retval None
 */
 
-/*
-void MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC){
+LinerList * MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC){
+    LC = (LinerList *)malloc(sizeof(LinerList));
     LC->length = LA->length + LB->length;
     int *pa = LA->elem;
     int *pb = LB->elem;
     int *pc = LC->elem;
 
-    int n = LA->length > LB->length ? LB->length: LA->length;
-    while (n > 0 )
+    int *pa_last = LA->elem + LA->length - 1;
+    int *pb_last = LB->elem + LB->length - 1;
+    while ((pa <= pa_last) && (pb <= pb_last))
     {
-        if(*pa++ > *pb++) 
-        {
-            *pc++ = *pb;
-        }
+        if(*pa > *pb) 
+            *pc++ = *pb++;
         else
-        {
-            *pc++ = *pa;
-        }
-        n--;
+            *pc++ = *pa++;
     }
-    for (int i = n; i < LC->length; i++)
-    {
-        *pc++ = LA->length > LB->length ? (*(pa+n)++) : (*(pb+n)++);
-    }
+    while(pa <= pa_last) *pc++ = *pa++;
+    while(pb <= pb_last) *pc++ = *pb++;
+
+    return LC;
 }
 
-*/
+void myMergeList_Sq(LinerList *LA,LinerList *LB,LinerList LC){
+    LC.length = LA->length + LB->length;
+    int *pa = LA->elem;
+    int *pb = LB->elem;
+    int *pc = LC.elem;
 
+    int n = LA->length > LB->length ? LB->length : LA->length;
+    int N = 2*n;
+    while (N >0)
+    {
+        if(*pa > *pb) 
+            *pc++ = *pb++;
+        else
+            *pc++ = *pa++;
+        N --;
+    }
+    for (int i = 2 * n; i < LC.length; i++)
+    {
+        *pc++ = LA->length > LB->length ? *pa++ : *pb++;
+    }
+}
 
 
 
@@ -203,12 +217,28 @@ int main(void)
     traverse_linerlist(&l);
     #endif
     
-    LinerList *A;
+    LinerList *A= NULL ,*B = NULL;
+
     A = InitList();
+    B = InitList();
+
     LinerListInsert(A,1,3);
     LinerListInsert(A,2,5);
     LinerListInsert(A,3,8);
     LinerListInsert(A,4,11);
     traverse_LinerList(A);
+    
+    LinerListInsert(B,1,2);
+    LinerListInsert(B,2,6);
+    LinerListInsert(B,3,8);
+    LinerListInsert(B,4,9);
+    LinerListInsert(B,5,11);
+    LinerListInsert(B,6,15);
+    LinerListInsert(B,7,20);
+    traverse_LinerList(B);
+    LinerList C;
+    myMergeList_Sq(A,B,C);
+    traverse_LinerList(&C);
+
     return 0;
 }

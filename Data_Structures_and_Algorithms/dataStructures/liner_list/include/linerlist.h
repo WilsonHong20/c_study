@@ -39,8 +39,8 @@ typedef struct sqllist
 
 typedef struct LinerList 
 {
-    int elem[0];
     int length;
+    int elem[0];
 }LinerList;
 
 
@@ -69,6 +69,6 @@ void info_book(book b);
 LinerList* InitList();
 status LinerListInsert(LinerList *l,unsigned int i,int data);
 void traverse_LinerList(LinerList *l);
-void MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC);
+LinerList * MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC);
 
 #endif
