@@ -168,11 +168,12 @@ LinerList * MergeList_Sq(LinerList *LA,LinerList *LB,LinerList *LC){
     return LC;
 }
 
-void myMergeList_Sq(LinerList *LA,LinerList *LB,LinerList LC){
-    LC.length = LA->length + LB->length;
+LinerList* myMergeList_Sq(LinerList *LA,LinerList *LB){
+    LinerList* LC = (LinerList *)malloc(sizeof(LinerList));
+    LC->length = LA->length + LB->length;
     int *pa = LA->elem;
     int *pb = LB->elem;
-    int *pc = LC.elem;
+    int *pc = LC->elem;
 
     int n = LA->length > LB->length ? LB->length : LA->length;
     int N = 2*n;
@@ -184,10 +185,11 @@ void myMergeList_Sq(LinerList *LA,LinerList *LB,LinerList LC){
             *pc++ = *pa++;
         N --;
     }
-    for (int i = 2 * n; i < LC.length; i++)
+    for (int i = 2 * n; i < LC->length; i++)
     {
         *pc++ = LA->length > LB->length ? *pa++ : *pb++;
     }
+    return LC;
 }
 
 
@@ -217,7 +219,7 @@ int main(void)
     traverse_linerlist(&l);
     #endif
     
-    LinerList *A= NULL ,*B = NULL;
+    LinerList *A= NULL ,*B = NULL, *C = NULL;
 
     A = InitList();
     B = InitList();
@@ -236,9 +238,9 @@ int main(void)
     LinerListInsert(B,6,15);
     LinerListInsert(B,7,20);
     traverse_LinerList(B);
-    LinerList C;
-    myMergeList_Sq(A,B,C);
-    traverse_LinerList(&C);
+
+    C = myMergeList_Sq(A,B);
+    traverse_LinerList(C);
 
     return 0;
 }
