@@ -73,3 +73,15 @@ clean:
 #全部删除
 cleanall:
 	rm -rf build_x86 build_arm
+
+
+
+
+
+
+
+
+
+
+mkdir -p build_x86 
+gcc -g -c src/linklist.c src/main.c -Iinclude 

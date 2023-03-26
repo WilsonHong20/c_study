@@ -98,8 +98,8 @@ Polynomial * InitPolynomial();
 status createPolynomial(Polynomial *pl,int num,struct parameter *para);
 status PolynomialInsert(Polynomial *pl,int i,struct parameter para);
 void foreach_poly(Polynomial *pl);
+Polynomial* myAddPolyn(Polynomial *pl1,Polynomial *pl2);
 Polynomial* AddPolyn(Polynomial *pl1,Polynomial *pl2);
-
 #endif
 
 

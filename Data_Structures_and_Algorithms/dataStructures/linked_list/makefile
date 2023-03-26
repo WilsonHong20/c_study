@@ -1,5 +1,5 @@
 ARCH ?= x86
-TARGET = linklist
+TARGET = dataStruct
 BUILD_DIR := build_$(ARCH)
 SRC_DIR := src
 IDIR := include
@@ -14,18 +14,23 @@ else
 	CC := arm-linux-gnueabihf-gcc
 endif
 
-@(TARGET):
-	@mkdir -p $(BUILD_DIR)
-	gcc -g -c -o $(BUILD_DIR)/$(TARGET).o $(SRC) $(CFLAGS)
-	gcc -g -o  $(BUILD_DIR)/$(TARGET) $(BUILD_DIR)/$(TARGET).o $(CFLAGS)
 
+$(BUILD_DIR)/$(TARGET): $(OBJS)
+	$(CC) -g -c -o $@ $^ $(CFLAGS)  
+
+$(OBJS):$(SRC) 
+	@mkdir -p $(BUILD_DIR)
+	$(CC) -g -c $@ $^  $(CFLAGS) -o 
 
 
 #伪目标
-.PHONY: clean cleanall 
+.PHONY: clean cleanall a
 #按架构删除
 clean:
 	rm -rf $(BUILD_DIR)
 #全部删除
 cleanall:
 	rm -rf build_x86 build_arm
+a :
+	@echo $(SRC)
+	@echo $(OBJS)
