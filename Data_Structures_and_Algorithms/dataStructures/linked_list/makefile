@@ -18,10 +18,9 @@ endif
 $(BUILD_DIR)/$(TARGET): $(OBJS)
 	$(CC) -g -c -o $@ $^ $(CFLAGS)  
 
-$(OBJS):$(SRC) 
+$(BUILD_DIR)/%.o:$(SRC_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
-	$(CC) -g -c $@ $^  $(CFLAGS) -o 
-
+	$(CC) -g  -o $@ $^  $(CFLAGS) 
 
 #伪目标
 .PHONY: clean cleanall a
@@ -34,3 +33,4 @@ cleanall:
 a :
 	@echo $(SRC)
 	@echo $(OBJS)
+	@echo $(BUILD_DIR)
