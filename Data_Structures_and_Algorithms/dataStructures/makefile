@@ -29,6 +29,3 @@ clean:
 #全部删除
 cleanall:
 	rm -rf build_x86 build_arm
-a :
-	@echo $(SRC)
-	@echo $(OBJS)
