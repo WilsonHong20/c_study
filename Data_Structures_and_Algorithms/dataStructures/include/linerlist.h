@@ -2,17 +2,14 @@
  * @Author: WilsonHong20 51684532+WilsonHong20@users.noreply.github.com
  * @Date: 2023-03-26 09:56:16
  * @LastEditors: WilsonHong20 51684532+WilsonHong20@users.noreply.github.com
- * @LastEditTime: 2023-03-26 11:42:58
+ * @LastEditTime: 2023-03-26 11:52:55
  * @FilePath: /c_study/Data_Structures_and_Algorithms/dataStructures/include/linerlist.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #ifndef LINERLIST_H
 #define LINERLIST_H
 
-#include<stdio.h>
-#include<stdlib.h>
 #include<string.h>
-#include<assert.h>
 #include "../include/error.h"
 
 #define MAXSIZE 10000

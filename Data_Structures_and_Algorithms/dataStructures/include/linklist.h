@@ -1,8 +1,5 @@
 #ifndef LINKLIST_H
 #define LINKLIST_H
-#include<stdio.h>
-#include<stdlib.h>
-#include <assert.h>
 #include "../include/error.h"
 
 /**
