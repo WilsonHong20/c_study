@@ -1,4 +1,5 @@
 #include "../include/linklist.h"
+#include "../include/linerlist.h"
 int main(void)
 {
     #if 0
@@ -71,7 +72,7 @@ int main(void)
   
 
     LinkList *l1 ;
-    l1 = InitList();
+    l1 = InitLinkList();
     ListInsert(l1,1,3);
     ListInsert(l1,2,5);
     ListInsert(l1,3,8);
@@ -79,7 +80,7 @@ int main(void)
     traverse_LinkList(l1);   //1 2 3 
 
     LinkList *l2 ;
-    l2 = InitList();
+    l2 = InitLinkList();
     ListInsert(l2,1,2);
     ListInsert(l2,2,6);
     ListInsert(l2,3,8);
@@ -114,5 +115,51 @@ int main(void)
     Polynomial *pl;
     pl = AddPolyn(pl1,pl2);
     foreach_poly(pl);
+
+    #if 0
+    book b1 = {"1a","三国演义",100};
+    book b2 = {"2b","水浒传",200};
+    book b3 = {"3c","西游记",300};
+    book tmp;
+    sqllist l;
+    initlist(&l);
+    listInsert(&l,1,b1);
+    listInsert(&l,2,b2);
+    listInsert(&l,2,b3);   
+    traverse_linerlist(&l);
+
+    int locate = locateBook(l,b3);
+    printf("b3 locate:%d\n",locate);
+
+    getBook(l,2,&tmp);
+    info_book(tmp);
+
+    listDelete(&l,2);
+    traverse_linerlist(&l);
+    #endif
+    
+    LinerList *A= NULL ,*B = NULL, *C = NULL;
+
+    A = InitList();
+    B = InitList();
+
+    LinerListInsert(A,1,3);
+    LinerListInsert(A,2,5);
+    LinerListInsert(A,3,8);
+    LinerListInsert(A,4,11);
+    traverse_LinerList(A);
+    
+    LinerListInsert(B,1,2);
+    LinerListInsert(B,2,6);
+    LinerListInsert(B,3,8);
+    LinerListInsert(B,4,9);
+    LinerListInsert(B,5,11);
+    LinerListInsert(B,6,15);
+    LinerListInsert(B,7,20);
+    traverse_LinerList(B);
+
+    C = myMergeList_Sq(A,B);
+    traverse_LinerList(C);
+
     return 0;
 }

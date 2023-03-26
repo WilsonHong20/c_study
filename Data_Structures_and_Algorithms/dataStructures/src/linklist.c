@@ -29,6 +29,7 @@ Linklist *initLinklist()
  * @param L 操作的链表
  * @param data 删除的链表数据
  */
+
 void delete_linkNode(Linklist *L, int data)
 {
     Linklist *tmp;
@@ -113,7 +114,7 @@ void traverse_linklist(Linklist *L)
  * @param  *L: 单链表
  * @retval 
  */
-LinkList* InitList(){
+LinkList* InitLinkList(){
     LinkList *L = (LNode *) malloc(sizeof(LNode)); 
     L->next = NULL;
     return L;

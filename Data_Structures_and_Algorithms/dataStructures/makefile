@@ -1,5 +1,5 @@
 ARCH ?= x86
-TARGET = linerlist
+TARGET = dataStruct
 BUILD_DIR := build_$(ARCH)
 SRC_DIR := src
 IDIR := include
@@ -9,26 +9,26 @@ DEPS := $(wildcard $(IDIR))/*.h)
 CFLAGS := $(patsubst %, -I%, $(IDIR))
 
 ifeq ($(ARCH),x86)
-CC := gcc
+	CC := gcc
 else
-CC := arm-linux-gnueabihf-gcc
+	CC := arm-linux-gnueabihf-gcc
 endif
 
-@(TARGET):
-	@mkdir -p $(BUILD_DIR)
-	$(CC)  -c -o $(BUILD_DIR)/$(TARGET).o $(SRC) $(CFLAGS)
-	$(CC)  -o  $(BUILD_DIR)/$(TARGET) $(BUILD_DIR)/$(TARGET).o $(CFLAGS)
+$(BUILD_DIR)/$(TARGET): $(OBJS)
+	$(CC) -g -o $@ $^ 
 
-.PHONY:build
-build:
+$(BUILD_DIR)/%.o:$(SRC_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
-	$(CC) -g -c -o $(BUILD_DIR)/$(TARGET).o $(SRC) $(CFLAGS)
-	$(CC) -g -o  $(BUILD_DIR)/$(TARGET) $(BUILD_DIR)/$(TARGET).o $(CFLAGS)
+	$(CC) -g  -c -o $@ $^  $(CFLAGS) 
+
 #伪目标
-.PHONY: clean cleanall 
+.PHONY: clean cleanall a
 #按架构删除
 clean:
 	rm -rf $(BUILD_DIR)
 #全部删除
 cleanall:
 	rm -rf build_x86 build_arm
+a :
+	@echo $(SRC)
+	@echo $(OBJS)

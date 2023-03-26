@@ -1,9 +1,9 @@
+#ifndef LINKLIST_H
+#define LINKLIST_H
 #include<stdio.h>
 #include<stdlib.h>
 #include <assert.h>
-
-#ifndef LINKLIST_H
-#define LINKLIST_H
+#include "../include/error.h"
 
 /**
  * @brief 链表数据结构
@@ -24,12 +24,6 @@ void traverse_linklist(Linklist *L);
 
 /****************************************************************/
 
-typedef enum
-{
-    ERROR = 0,
-    OK = 1    ,
-    OVERFLOW =2
-}status;
 
 typedef struct LNode
 {
@@ -38,7 +32,7 @@ typedef struct LNode
 }LNode,LinkList;
 
 
-LinkList *InitList();
+LinkList *InitLinkList();
 int GetElem(LinkList L,int i);
 LNode *LocateElem(LinkList L,int data);
 status ListInsert(LinkList *L,int i,int data);
