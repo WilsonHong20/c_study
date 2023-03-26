@@ -166,3 +166,7 @@ void test_linklist()
     foreach_poly(pl);
 
 }
+
+void test_linkstack(){
+    
+}
