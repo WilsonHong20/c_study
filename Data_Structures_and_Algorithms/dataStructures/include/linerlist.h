@@ -11,8 +11,6 @@
 
 #include<string.h>
 #include "../include/error.h"
-
-#define MAXSIZE 10000
 /**
  * @brief  图书结构体
  * @note   no:图书ISBN name:名称      price：价格

@@ -5,7 +5,6 @@
 
 
 //---------------------顺序栈的存储结构---------------------------------//
-#define MAXSIZE 100
 
 #define new(type,n) (type *)malloc(n * sizeof(type))
 #define delete(var) free(var)
@@ -15,13 +14,13 @@
  * @note   
  * @retval 
 */
-#define tStack(T) \
-typedef struct stack_##T \ 
+#define tStack(T)\
+typedef struct stack_##T\
 {\
-    T *base; \
-    T *top; \
-    int stacksize; \
-}SqStack_##T   \
+    T *base;\
+    T *top;\
+    int stacksize;\
+}SqStack_##T\
 
 /**
  * @brief  初始化SqStack_##T栈

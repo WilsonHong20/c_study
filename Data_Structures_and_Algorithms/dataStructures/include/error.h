@@ -6,6 +6,8 @@
 #include<stdlib.h>
 #include <assert.h>
 
+#define MAXSIZE 100 
+
 typedef enum
 {
     ERROR = 0,
