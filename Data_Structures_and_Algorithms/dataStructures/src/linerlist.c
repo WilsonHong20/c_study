@@ -1,4 +1,4 @@
-#include "linerlist.h"
+#include "../include/linerlist.h"
 
 /**
  * @brief  构造一个空的顺序表
