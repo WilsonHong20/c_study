@@ -1,6 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
 
+#ifndef MACRO_H
+#define MACRO_H
+
+#include "../include/errors.h"
 
 #define foreach_buffer_duplication_error \
     _(SWAPPED,           "mac swap packets processed")\
@@ -34,14 +36,8 @@ for(int i = 0;i < n; i++)\
     printf("%s\n",p[i]);\
 }\
 
-int main(void)
-{
-    printf_macro_info(buffer_duplication_error_strings,BUFFER_DUPLICATION_N_ERROR);
-    return 0;
-}
 
 
-
-
+#endif
 
 

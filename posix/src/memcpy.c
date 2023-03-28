@@ -1,7 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include <string.h>
-#define MAXSIZE 7
+
+#include "../include/memcpy.h"
 
 void my_memcpy(char *dst, char *src,int n)
 {
@@ -39,12 +37,3 @@ void bufwrite(char *p,int n)
     }  
     printf("%s\n",buffer);
 }
-
-int main(void)
-{
-    char *str = "hello world";
-    bufwrite(str,10);
-}
-
-
-
