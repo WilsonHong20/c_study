@@ -1,4 +1,5 @@
 #include "errors.h"
+#include<string.h>
 int main( int argc, char *argv[])
 {
     int seconds;
