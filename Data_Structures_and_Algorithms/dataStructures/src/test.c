@@ -168,5 +168,31 @@ void test_linklist()
 }
 
 void test_linkstack(){
-    
+    Stack stack;
+    stack_init(&stack,10);
+
+    int i = 10;
+    stack_push(&stack,&i,sizeof(i));
+
+    double d = 2.13;
+    stack_push(&stack,&d,sizeof(d));
+
+    char s[] = "hello";
+    stack_push(&stack,&s,sizeof(s));
+
+    int j;
+    stack_pop(&stack,&j);
+    printf("%d\n",j);
+
+    double e;
+    stack_pop(&stack,&e);
+    printf("%f\n",e);
+
+
+    char t[10];
+    stack_pop(&stack,&t);
+    printf("%s\n",t);
+
+    stack_destory(&stack);
+
 }
