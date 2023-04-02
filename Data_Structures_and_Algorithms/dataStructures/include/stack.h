@@ -3,6 +3,7 @@
 #define STACK_H
 #include "../include/error.h"
 #include <string.h>
+#include <stddef.h>
 
  typedef struct
  {
@@ -34,7 +35,7 @@ typedef struct
 void InitStack_liner(SqStack *stack, size_t size);
 void DestoryStack_liner(SqStack *stack);
 void ClearStack_liner(SqStack *stack);
-status StackEmpty_liner(SqStack *stack);
+status StackisEmpty_liner(SqStack *stack);
 int stackLength_liner(SqStack *stack);
 void GetTop_liner(SqStack *stack,void *data);
 void push_liner(SqStack *stack,void *data,size_t size);
@@ -43,28 +44,20 @@ void StackTraverse_liner(SqStack *stack);
 
 //---------------------链表栈的存储结构---------------------------------//
 
+typedef  struct StackNode
+{
+   StackItem *items;
+   struct StackNode *next;   
+}StackNode,LinkStack;
 
 
-char DestoryStack(void);
-void ClearStack(void *);
-status StackEmpty(void *);
-int stackLength(void *);
-
-void StackTraverse(void *);
-
-
-
-
-//-------------------------------------------------------//
-void InitStack();
-char DestoryStack(void);
-void ClearStack(void *);
-status StackEmpty(void *);
-int stackLength(void *);
-void *GetTop(void *);
-void push(void *,void *);
-void pop (void *,void*);
-void StackTraverse(void *);
+void InitStack_link(LinkStack *stack);
+void DestoryStack_link(LinkStack *stack);
+status StackisEmpty_link(LinkStack *stack);
+int stackLength_link(LinkStack *stack);
+void GetTop_link(LinkStack *stack,void *data);
+void push_link(LinkStack *stack,void *data,size_t size);
+status pop_link(LinkStack *stack,void *data);
 
 
 

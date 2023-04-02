@@ -72,7 +72,7 @@ int stackLength_liner(SqStack *stack){
     if(stack->base == stack->top)
         return ERROR;
     else   
-        return (stack->top - stack->base)/sizeof(StackItem);
+        return stack->top - stack->base;
 }
 void GetTop_liner(SqStack *stack,void *data)
 {
@@ -106,8 +106,65 @@ void pop_liner(SqStack *stack,void *data){
     item->size = 0;
 }
 
-
-void StackTraverse_liner(SqStack *stack)
-{
-
+//---------------------链表栈的存储结构---------------------------------//
+/**
+ * @brief  构造一个空栈S,栈顶指针置空
+ * @note   
+ * @param  *stack: 
+ * @retval None
+*/
+void InitStack_link(LinkStack *stack){
+    
+    stack = NULL;     //
 }
+
+void push_link(LinkStack *stack,void *data,size_t size){
+    StackItem *item = malloc(sizeof(StackItem));
+    item->size = size;
+    memcpy(item->data,data,size);
+    StackNode *node = (StackNode *)malloc(sizeof(StackNode));
+    node->items = item;
+    node->next = stack; 
+    stack = node;
+}
+status pop_link(LinkStack *stack,void *data){
+    assert(stack);
+    memcpy(data,stack->items->data,stack->items->size);
+    StackNode *tmp;
+    tmp = stack;
+    stack = stack->next;
+    free(tmp);
+}
+
+void GetTop_link(LinkStack *stack,void *data){
+    assert(stack);
+    memcpy(data,stack->items->data,stack->items->size);
+}
+
+void DestoryStack_link(LinkStack *stack){
+    assert(stack);
+    if(stack != NULL)
+    {
+        free(stack);
+        stack = stack->next;
+    }
+    return;
+}
+status StackisEmpty_link(LinkStack *stack){
+    if(stack == NULL)
+        return OK;
+    else
+        return ERROR;
+}
+int stackLength_link(LinkStack *stack){
+    int len = 0;
+    if(stack == NULL)
+        return len;
+    else
+    {
+        ++len;
+        stack = stack->next;
+    }
+    return len;
+}
+

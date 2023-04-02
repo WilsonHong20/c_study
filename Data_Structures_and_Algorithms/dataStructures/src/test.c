@@ -215,19 +215,72 @@ void test_linerstack(){
 
     char t1[10];
     GetTop_liner(&stack,&t1);
-    printf("the top elem is %s\n",t1);
+    va_format(t1);
+
+    printf("the length of stack is %d\n",stackLength_liner(&stack));
+
 
     char t[10];
     pop_liner(&stack,&t);
-    printf("%s\n",t);
+    va_format("s",t);
 
     double e;
     pop_liner(&stack,&e);
-    printf("%f\n",e);
+    va_format("f",e);
+    int status;
+    status = StackisEmpty_liner(&stack);
+    printf("this stack is empty: %s\n",status > 0 ? "yes":"no");
+    printf("the length of stack is %d\n",stackLength_liner(&stack));
 
     int j;
     pop_liner(&stack,&j);
-    printf("%d\n",j);
+    va_format("d",j);
+
+    status = StackisEmpty_liner(&stack);
+    printf("this stack is empty: %s\n",status > 0 ? "yes":"no");
+    printf("the length of stack is %d\n",stackLength_liner(&stack));
 
     DestoryStack_liner(&stack);
+}
+
+void test_linkstack(){
+    LinkStack *stack;
+    InitStack_link(stack);
+
+    int i = 10;
+    push_link(stack,&i,sizeof(i));
+
+    double d = 2.13f;
+    push_link(stack,&d,sizeof(d));
+
+
+    char s[] = "hello";
+    push_link(stack,&s,sizeof(s));
+
+    char t1[10];
+    GetTop_link(stack,&t1);
+    va_format(t1);
+
+    printf("the length of stack is %d\n",stackLength_link(stack));
+
+    char t[10];
+    pop_link(stack,&t);
+    va_format("s",t);
+
+    double e;
+    pop_link(stack,&e);
+    va_format("f",e);
+    int status;
+    status = StackisEmpty_link(stack);
+    printf("this stack is empty: %s\n",status > 0 ? "yes":"no");
+    printf("the length of stack is %d\n",stackLength_link(stack));
+
+
+    int j;
+    pop_link(stack,&j);
+    va_format("d",j);
+
+    status = StackisEmpty_link(stack);
+    printf("this stack is empty: %s\n",status > 0 ? "yes":"no");
+    printf("the length of stack is %d\n",stackLength_link(stack));
 }
