@@ -32,7 +32,7 @@ int main(){
         exit(EXIT_FAILURE);
     }
 
-    printf("Server started,listening on port %d ...\n");
+    printf("Server started,listening on port %d ...\n",PORT);
 
 
     //接受连接请求
