@@ -120,6 +120,7 @@ void InitStack_link(LinkStack *stack){
 
 void push_link(LinkStack *stack,void *data,size_t size){
     StackItem *item = malloc(sizeof(StackItem));
+    item->data = malloc(size);
     item->size = size;
     memcpy(item->data,data,size);
     StackNode *node = (StackNode *)malloc(sizeof(StackNode));
