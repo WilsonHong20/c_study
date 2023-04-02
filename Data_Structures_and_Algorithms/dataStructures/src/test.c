@@ -167,7 +167,7 @@ void test_linklist()
 
 }
 
-void test_linkstack(){
+void test_GPT_linerstack(){
     Stack stack;
     stack_init(&stack,10);
 
@@ -180,19 +180,54 @@ void test_linkstack(){
     char s[] = "hello";
     stack_push(&stack,&s,sizeof(s));
 
-    int j;
-    stack_pop(&stack,&j);
-    printf("%d\n",j);
+    char t[10];
+    stack_pop(&stack,&t);
+    printf("%s\n",t);
 
     double e;
     stack_pop(&stack,&e);
     printf("%f\n",e);
 
+    int j;
+    stack_pop(&stack,&j);
+    printf("%d\n",j);
 
-    char t[10];
-    stack_pop(&stack,&t);
     printf("%s\n",t);
 
     stack_destory(&stack);
 
+}
+
+
+void test_linerstack(){
+    SqStack stack;
+    InitStack_liner(&stack,10);
+
+    int i = 10;
+    push_liner(&stack,&i,sizeof(i));
+
+    double d = 2.13;
+    push_liner(&stack,&d,sizeof(d));
+
+
+    char s[] = "hello";
+    push_liner(&stack,&s,sizeof(s));
+
+    char t1[10];
+    GetTop_liner(&stack,&t1);
+    printf("the top elem is %s\n",t1);
+
+    char t[10];
+    pop_liner(&stack,&t);
+    printf("%s\n",t);
+
+    double e;
+    pop_liner(&stack,&e);
+    printf("%f\n",e);
+
+    int j;
+    pop_liner(&stack,&j);
+    printf("%d\n",j);
+
+    DestoryStack_liner(&stack);
 }

@@ -7,6 +7,7 @@
 #include"../include/stack.h"
 void test_linerlist();
 void test_linklist();
-void test_linkstack();
+void test_GPT_linerstack();
+void test_linerstack();
 
 #endif
