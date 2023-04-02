@@ -82,7 +82,7 @@ void GetTop_liner(SqStack *stack,void *data)
     { 
         StackItem *tmp = stack->top;
         StackItem *item = (--tmp);
-        memcpy(data,item,item->size);
+        memcpy(data,item->data,item->size);
     }
 }
 void push_liner(SqStack *stack,void *data,size_t size){
