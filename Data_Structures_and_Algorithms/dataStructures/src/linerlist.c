@@ -125,6 +125,7 @@ LinerList* InitList(){
 
 status LinerListInsert(LinerList *l,unsigned int i,int data){
     assert( i> 0);
+    l->elem = malloc(sizeof(int));
     ++l->length ;
     l->elem[i-1] = data;
     return OK;
