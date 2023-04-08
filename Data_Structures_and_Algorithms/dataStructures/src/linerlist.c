@@ -117,7 +117,7 @@ void info_book(book b)
 
 /*******************************************有序表*****************************************************/
 LinerList* InitList(){
-    LinerList *L =(LinerList *) malloc(sizeof(LinerList));
+    LinerList *L =(LinerList *) malloc(sizeof(LinerList) + MAXSIZE*sizeof(int));
     if(L->elem == NULL) exit(OVERFLOW);
     L->length = 0;
     return L;
