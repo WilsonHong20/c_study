@@ -201,4 +201,9 @@ int stackLength_link(LinkStack *stack){
     } while (stack != NULL);
     return len;
 }
-
+/**
+ * @brief  遍历链表栈
+ * @note   表中的数据类型必须一致
+ * @param  *stack: 
+ * @retval None
+*/

@@ -61,6 +61,9 @@ LinkStack *  tmp_push_link(LinkStack *stack,void *data,size_t size);
 status pop_link(LinkStack *stack,void *data);
 LinkStack *tmp_pop_link(LinkStack *stack,void *data);
 
+//---------------------单调链表栈的存储结构的实现---------------------------------//
+
+
 
 
 #endif
