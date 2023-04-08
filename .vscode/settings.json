@@ -5,6 +5,8 @@
         "errors.h": "c",
         "string.h": "c",
         "error.h": "c",
-        "format.h": "c"
+        "format.h": "c",
+        "initializer_list": "c",
+        "string": "c"
     }
 }

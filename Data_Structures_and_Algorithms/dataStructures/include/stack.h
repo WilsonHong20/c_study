@@ -57,7 +57,9 @@ status StackisEmpty_link(LinkStack *stack);
 int stackLength_link(LinkStack *stack);
 void GetTop_link(LinkStack *stack,void *data);
 void push_link(LinkStack *stack,void *data,size_t size);
+LinkStack *  tmp_push_link(LinkStack *stack,void *data,size_t size);
 status pop_link(LinkStack *stack,void *data);
+LinkStack *tmp_pop_link(LinkStack *stack,void *data);
 
 
 

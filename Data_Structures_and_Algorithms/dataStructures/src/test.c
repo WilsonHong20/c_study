@@ -244,32 +244,32 @@ void test_linerstack(){
 }
 
 void test_linkstack(){
-    LinkStack *stack;
-    InitStack_link(stack);
-
+    LinkStack *stack = NULL;
+ 
     int i = 10;
-    push_link(stack,&i,sizeof(i));
+    stack = tmp_push_link(stack,&i,sizeof(i));
 
-    double d = 2.13f;
-    push_link(stack,&d,sizeof(d));
+    double d = 2.13;
+    stack = tmp_push_link(stack,&d,sizeof(d));
 
 
     char s[] = "hello";
-    push_link(stack,&s,sizeof(s));
+    stack = tmp_push_link(stack,&s,sizeof(s));
 
     char t1[10];
     GetTop_link(stack,&t1);
-    va_format(t1);
+    va_format("s",t1);
 
     printf("the length of stack is %d\n",stackLength_link(stack));
 
     char t[10];
-    pop_link(stack,&t);
+    stack = tmp_pop_link(stack,&t);
     va_format("s",t);
 
     double e;
-    pop_link(stack,&e);
+    stack = tmp_pop_link(stack,&e);
     va_format("f",e);
+
     int status;
     status = StackisEmpty_link(stack);
     printf("this stack is empty: %s\n",status > 0 ? "yes":"no");
@@ -277,7 +277,7 @@ void test_linkstack(){
 
 
     int j;
-    pop_link(stack,&j);
+    stack = tmp_pop_link(stack,&j);
     va_format("d",j);
 
     status = StackisEmpty_link(stack);

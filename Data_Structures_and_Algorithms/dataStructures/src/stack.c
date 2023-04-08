@@ -114,8 +114,9 @@ void pop_liner(SqStack *stack,void *data){
  * @retval None
 */
 void InitStack_link(LinkStack *stack){
-    
-    stack = NULL;     //
+    stack = (StackNode *)malloc(sizeof(StackNode));
+    stack->items = NULL;
+    stack->next = NULL;     //
 }
 
 void push_link(LinkStack *stack,void *data,size_t size){
@@ -123,18 +124,47 @@ void push_link(LinkStack *stack,void *data,size_t size){
     item->data = malloc(size);
     item->size = size;
     memcpy(item->data,data,size);
+
     StackNode *node = (StackNode *)malloc(sizeof(StackNode));
     node->items = item;
     node->next = stack; 
     stack = node;
 }
+
+
+LinkStack *tmp_push_link(LinkStack *stack,void *data,size_t size){
+    StackItem *item = malloc(sizeof(StackItem));
+    item->data = malloc(size);
+    item->size = size;
+    memcpy(item->data,data,size);
+
+    StackNode *node = (StackNode *)malloc(sizeof(StackNode));
+    node->items = item;
+    node->next = stack; 
+    stack = node;
+
+    return stack;
+}
+
+
 status pop_link(LinkStack *stack,void *data){
-    assert(stack);
+    assert(stack !=NULL );
     memcpy(data,stack->items->data,stack->items->size);
     StackNode *tmp;
     tmp = stack;
     stack = stack->next;
     free(tmp);
+}
+
+
+ LinkStack *tmp_pop_link(LinkStack *stack,void *data){
+    assert(stack !=NULL );
+    memcpy(data,stack->items->data,stack->items->size);
+    StackNode *tmp;
+    tmp = stack;
+    stack = stack->next;
+    free(tmp);
+    return stack;
 }
 
 void GetTop_link(LinkStack *stack,void *data){
@@ -151,21 +181,24 @@ void DestoryStack_link(LinkStack *stack){
     }
     return;
 }
+
 status StackisEmpty_link(LinkStack *stack){
     if(stack == NULL)
         return OK;
     else
         return ERROR;
 }
+
+
 int stackLength_link(LinkStack *stack){
     int len = 0;
     if(stack == NULL)
         return len;
-    else
+    do
     {
-        ++len;
+        len++;
         stack = stack->next;
-    }
+    } while (stack != NULL);
     return len;
 }
 
