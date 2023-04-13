@@ -1,7 +1,10 @@
 #ifndef ERRORS_H
 #define ERRORS_H
-#include<unistd.h>
+
 #include<stdio.h>
-#include<string.h>
 #include<stdlib.h>
+#include<string.h>
+#include <stdbool.h>
+#include<unistd.h>
+
 #endif

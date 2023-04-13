@@ -1,7 +1,7 @@
 #include<string.h>
 #include<strings.h>
 #include<stdio.h>
-#include"sha256.h"
+#include"../include/sha256.h"
 
 #define rightrotate(w,n) ((w >> n) | (w) << (32 - (n)))
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__

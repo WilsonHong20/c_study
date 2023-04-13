@@ -7,6 +7,8 @@
         "error.h": "c",
         "format.h": "c",
         "initializer_list": "c",
-        "string": "c"
+        "string": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c"
     }
 }
