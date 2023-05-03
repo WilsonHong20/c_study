@@ -725,3 +725,34 @@ Polynomial* AddPolyn(Polynomial *pl1,Polynomial *pl2){
     return pl3;
 }
 
+/*****************************
+翻转链表
+
+*/
+Linklist* reverse(Linklist *head){
+    if(head -> next == NULL) return head;
+    LinkList* last = reverse(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return last;
+}
+
+LinkList *sucessNode = NULL;
+Linklist *reverse_N(Linklist *head, int n){
+    if(n == 1 )
+    {
+        sucessNode = head->next;
+        return head;
+    }
+    Linklist *last = reverse_N(head->next, n-1);
+    head->next->next = head;
+    head->next = sucessNode;
+    return last;
+}
+
+Linklist *reverse_between(LinkList *head, int m ,int n){
+    if(m == 1)
+       return  reverse_N(head, n);
+    head->next = reverseBetween(head->next, m - 1, n - 1);
+    return head;
+}
