@@ -8,7 +8,7 @@ long Fact(long n)
 
 int main(void)
 {
-    //test_linklist();
+    test_linklist();
     //test_linerlist();
     //test_GPT_linerstack();
     //test_linerstack();

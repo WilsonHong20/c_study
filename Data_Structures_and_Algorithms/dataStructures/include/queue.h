@@ -19,8 +19,8 @@ typedef struct
 }SqQueue;
 
 void InitQueue(SqQueue *q);
-void Enqueue(SqQueue *q,void *data,size_t size);
-void Dequeue(SqQueue *q,void *data);
+status Enqueue(SqQueue *q,void *data,size_t size);
+status Dequeue(SqQueue *q,void *data);
 void GetHead(SqQueue *q,void *data);
 int QueueLength(SqQueue q);
 status QueneEmpty(SqQueue q);

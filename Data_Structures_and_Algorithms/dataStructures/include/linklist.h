@@ -34,6 +34,7 @@ int GetElem(LinkList L,int i);
 LNode *LocateElem(LinkList L,int data);
 status ListInsert(LinkList *L,int i,int data);
 status Listdelete(LinkList *L,int i);
+LinkList* reverse(LinkList *head);
 
 //构造头插法链表
 void CreateList_H(LinkList *L,int n);

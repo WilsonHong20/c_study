@@ -306,6 +306,24 @@ void traverse_LinkList(LinkList *L)
 }
 
 /**
+ * @brief  链表的翻转
+ * @note   
+ * @param  head: 头节点的下一个节点
+ * @retval 
+ */
+LinkList* reverse(LinkList *head) {
+    if (head->next == NULL) return head;
+    LinkList* last = reverse(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return last;
+}
+
+
+
+
+
+/**
  * @brief  创建循环链表
  * @note   
  * @param  *L: 循环链表

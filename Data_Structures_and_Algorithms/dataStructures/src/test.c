@@ -51,7 +51,7 @@ void test_linerlist()
 
 void test_linklist()
 {
-   #if 0
+   
     /********************************/
     //Linklist *L = initLinklist();
     //traverse_linklist(L);
@@ -89,8 +89,9 @@ void test_linklist()
 
     CreateList_R(rl,5); // 0 1 2 3 4 
     traverse_LinkList(rl);
-    
-
+    reverse(rl->next);
+    traverse_LinkList(rl);
+    #if 0
     LinkList *CL = NULL;
     CL = InitList();
     Create_Circular_Linked_List(CL,5); //0 1 2 3 4 -> 0 1 2 3 4 ...
@@ -144,7 +145,7 @@ void test_linklist()
     l3 = myMergeList_L(l1,l2);
     traverse_LinkList(l3);   //1 2 3 
 
-    #endif
+    
 
     Polynomial *pl1;
     struct parameter para1[4] = {{7,0},{3,1},{9,8},{5,17}};
@@ -164,7 +165,7 @@ void test_linklist()
     Polynomial *pl;
     pl = AddPolyn(pl1,pl2);
     foreach_poly(pl);
-
+    #endif
 }
 
 void test_GPT_linerstack(){
